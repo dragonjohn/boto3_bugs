@@ -27,10 +27,10 @@ response = client.send_message(
 )
 ```
 
-Bug 1:
+### Bug 1:
 'DataType' sholud be upper case for 'String'
 
-Bug 2:
+### Bug 2:
 'StringListValues' is not workable when running code, error message shows the non-related cloumn for this issue.
 e.g.:
 ```
