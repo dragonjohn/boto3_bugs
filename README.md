@@ -4,7 +4,7 @@ https://boto3.readthedocs.io/en/latest/reference/services/sqs.html
 
 send_message(**kwargs) 
 Request Syntax
-
+```
 response = client.send_message(
     QueueUrl='string',
     MessageBody='string',
@@ -25,7 +25,7 @@ response = client.send_message(
     MessageDeduplicationId='string',
     MessageGroupId='string'
 )
-
+```
 
 Bug 1:
 'DataType' sholud be upper case for 'String'
@@ -33,7 +33,7 @@ Bug 1:
 Bug 2:
 'StringListValues' is not workable when running code, error message shows the non-related cloumn for this issue.
 e.g.:
-
+```
 Traceback (most recent call last):
   File "sqs_example.py", line 35, in <module>
     'DataType': 'Number'
@@ -46,13 +46,14 @@ Traceback (most recent call last):
   File "/home/ubuntu/.local/lib/python3.5/site-packages/botocore/client.py", line 612, in _make_api_call
     raise error_class(parsed_response, operation_name)
 botocore.errorfactory.UnsupportedOperation: An error occurred (AWS.SimpleQueueService.UnsupportedOperation) when calling the SendMessage operation: Message attribute list values in SendMessage operation are not supported.
-  
+``` 
   
 Solution:
 Removed unnessasary fields and use string type to send message in messageAttribues.
 Transform your list to sting in order to set sting list in message attributes.
 
 e.g.:
+```
 results = ['abc', '123', '!%#']
 response = queue.send_message(
     MessageBody='Test send message',
@@ -68,5 +69,5 @@ response = queue.send_message(
         }
     }
 )
-
+```
 Update on 2018/08/23
